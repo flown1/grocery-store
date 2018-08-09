@@ -1,0 +1,114 @@
+.product-box{
+    height: 400px;
+    width: 300px;
+    margin: 5px 15px; 
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    border-radius: 3px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+}
+.box-top{
+    height: 67%;
+}
+.product-picture{
+    height:200px;
+    width: 300px;
+}
+.product-price{
+    color:  hsla(0, 0%, 0%, 0.788);
+}
+.product-quantity{
+    color: hsla(0, 0%, 0%, 0.700);
+}
+.product-quantity-picker-wrapper{
+    display: flex;
+    align-items: center;
+}
+.product-quantity-inputbox{
+    width: 25px;
+    text-align: center;
+}
+hr{
+    width: 80%;
+}
+.btn-main{
+    border-radius: 15px;
+    margin: auto;
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    padding-top: 5px;
+
+    cursor: pointer;
+}
+.btn-red{
+    background-color: hsla(0, 91%, 42%, 0.849);
+    color: #dfdfdf;
+}
+.btn-grey{
+    background-color: hsla(264, 4%, 76%, 0.85);
+    color: #262626;
+}
+.btn-circle{
+    border-radius: 50%;
+}
+.btn-xs{
+    width: 25px;
+    height: 25px;
+    font-size: 1.3em;
+}
+.add-to-cart-btn{
+    width: 100px;
+    height: 25px;
+}
+.add-to-cart-btn:hover{
+    animation: focusButton;
+    animation-duration: 0.5s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+@keyframes focusButton{
+    0%{
+        box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+        
+    }100%{
+        box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.2);
+        width: 105px;
+        height: 26.25px;
+        color: #fff;
+    }
+}
+.btn-red:active{
+    animation: btnClickEffect;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+
+}
+@keyframes btnClickEffect{
+    0%{
+        background: radial-gradient(hsla(0, 91%, 42%, 0.849), hsla(0, 91%, 42%, 0.849));
+    }100%{
+        background: radial-gradient(hsla(0, 91%, 42%, 0.849),hsla(0, 92%, 42%, 0.534));
+    }
+}
+.product-box:hover{
+    animation-name: focusBox;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes focusBox{
+    0%{
+        box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    }100%{
+        box-shadow: 0 6px 10px 0 hsla(0, 0%, 0%, 0.2);
+    }
+}
+
