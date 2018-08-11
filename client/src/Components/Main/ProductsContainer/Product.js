@@ -1,16 +1,26 @@
 import React from 'react';
-import '../Styles/products/Product.css';
-import {connect} from "react-redux";
-import {addProduct} from "../Redux/actions/productActions";
+import '../../../Styles/products/Product.css';
+import { connect } from "react-redux";
+import { addProduct, productQuantityIncrease } from "../../../Redux/actions/productActions";
+import QuantityIndicator from "./QuantityIndicator";
 
 class Product extends React.Component {
 
     constructor(){
         super();
+
         this.handleButtonClick = this.handleButtonClick.bind(this);
+        this.handlePlusButtonClick = this.handlePlusButtonClick.bind(this);
     }
     handleButtonClick(){
         this.props.addNewProduct(this.props.product);
+    }
+
+    handleMinusButtonClick() {
+    }
+
+    handlePlusButtonClick() {
+        this.props.productQuantityIncrease(this.props.product);
     }
 
     render() {
@@ -25,7 +35,7 @@ class Product extends React.Component {
                     <h3 className='product-price'>${this.props.product.price}</h3>
                     <div className="product-quantity-picker-wrapper">
                         <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handleMinusButtonClick}>-</div>
-                        <input className="product-quantity-inputbox" value={this.props.product.quantity} />
+                        <QuantityIndicator />
                         <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
                     </div>
                     <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>
@@ -36,6 +46,10 @@ class Product extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {addNewProduct: (product) => dispatch(addProduct(product))}
-}
+    return {
+        addNewProduct: (product) => dispatch(addProduct(product)),
+        productQuantityIncrease: (product) => dispatch(productQuantityIncrease(product))
+    }
+};
+
 export default connect(null, mapDispatchToProps)(Product);

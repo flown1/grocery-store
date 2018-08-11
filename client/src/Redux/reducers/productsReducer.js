@@ -27,22 +27,57 @@ const initialState = {
 
 const handleAddProductToCart = (state, action) => {
     let newTotal = state.total + action.payload.price;
+
+    let newCart = state.cart;
+    const productToAdd = action.payload.product;
+
+    let found = false;
+    state.cart.map( (p) => {
+       if(p.id === productToAdd.id){
+           p.quantity += 1;//productToAdd.quantity;
+           found = true;
+       }
+    });
+    if(!found) {
+        newCart = [
+            ...state.cart,
+            action.payload.product
+        ];
+    }
     return ({
         ...state,
-        cart: [
-            ...state.cart,
-            action.payload
-        ],
+        cart: newCart,
         total: newTotal
     })
 };
+
+function handleProductQuantityIncrease(state, action) {
+    let newProducts = [];
+    state.products.map( (p) => {
+        if(p.id === action.payload.product.id){
+            p.quantity += 1;
+        }
+        newProducts.push(p);
+    });
+    return ({
+        ...state,
+        products: newProducts
+    })
+}
+
+function handleProductQuantityDecrease(state, action) {
+    return undefined;
+}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
         return handleAddProductToCart(state, action);
+    case "PRODUCT_QUANTITY_INCREASE":
+        return handleProductQuantityIncrease(state, action);
+    case "PRODUCT_QUANTITY_DECREASE":
+        return handleProductQuantityDecrease(state, action);
     default:
       return state
   }
-
 }

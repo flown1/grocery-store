@@ -44,16 +44,16 @@ hr{
     color: #dfdfdf;
 }
 .btn-grey{
-    background-color: hsla(264, 4%, 76%, 0.85);
+    background-color: hsla(264, 2%, 53%, 0.85);
     color: #262626;
 }
 .btn-circle{
     border-radius: 50%;
 }
 .btn-xs{
-    width: 25px;
-    height: 25px;
-    font-size: 1.3em;
+    width: 20px;
+    height: 20px;
+    font-size: 1.1em;
 }
 .add-to-cart-btn{
     width: 100px;

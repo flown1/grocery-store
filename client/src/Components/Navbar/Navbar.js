@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/navbar/Navbar.css';
+import '../../Styles/navbar/Navbar.css';
 
 import Cart from './Cart.js';
 import Login from './Login.js';

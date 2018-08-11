@@ -17,16 +17,18 @@ class Cart extends React.Component{
 
     toggleDropdown() {
         this.setState({showDropdown: !this.state.showDropdown});
+
+        console.log("shownDropdown: ", this.state.showDropdown);
     }
 
     render(){
         return(
             <div>
                 <div className="cart" onClick={this.handleOnClick}>
-                        <i className="fas fa-shopping-cart"></i>
-                        Cart: <div className="cart-counter">{this.props.cart.length}</div>
+                    <i className="fas fa-shopping-cart"></i>
+                    Cart: <div className="cart-counter">{this.props.cart.length}</div>
                 </div>
-                <DropdownList cart={this.props.cart} total={this.props.total}/>
+                <DropdownList showDropdown={this.state.showDropdown} cart={this.props.cart} total={this.props.total}/>
             </div>
         )
     }
@@ -36,4 +38,5 @@ const mapStateToProps = state => ({
     cart: state.cart,
     total: state.total
 });
+
 export default connect(mapStateToProps)(Cart);

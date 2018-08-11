@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Styles/App.css';
 
-import ListOfProducts from './Components/ListOfProducts'
-import Navbar from './Components/Navbar'
+import ListOfProducts from './Components/Main/ProductsContainer/ListOfProducts'
+import Navbar from './Components/Navbar/Navbar'
 
 class App extends Component {
   render() {

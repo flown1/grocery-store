@@ -1,6 +1,6 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import products from './reducers/productsReducer'
+import { combineReducers } from 'redux'
+import productsReducer from "./reducers/productsReducer";
 
 export default combineReducers({
-  products,
+    productsReducer
 })
