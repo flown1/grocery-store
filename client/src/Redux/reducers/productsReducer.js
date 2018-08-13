@@ -32,14 +32,13 @@ const handleAddProductToCart = (state, action) => {
     const productToAdd = action.payload.product;
 
     let found = false;
-    state.cart.map( (p) => {
-       if(p.id === productToAdd.id){
-           if(!found) {
-               p.quantity += 1;//productToAdd.quantity;
-               found = true;
-           }
-       }
-    });
+    for(let i = 0; i <state.cart.length; i++){
+        if(state.cart[i].id === productToAdd.id){
+            state.cart[i].quantity += 1;//productToAdd.quantity;
+            found = true;
+            break;
+        }
+    }
     if(!found) {
         newCart = [
             ...state.cart,
