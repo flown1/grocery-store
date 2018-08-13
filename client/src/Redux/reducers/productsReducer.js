@@ -26,7 +26,7 @@ const initialState = {
 };
 
 const handleAddProductToCart = (state, action) => {
-    let newTotal = state.total + action.payload.price;
+    let newTotal = state.total + action.payload.product.price;
 
     let newCart = state.cart;
     const productToAdd = action.payload.product;
@@ -44,6 +44,8 @@ const handleAddProductToCart = (state, action) => {
             ...state.cart,
             action.payload.product
         ];
+    }else{
+        console.log("not found will send cart:", newCart);
     }
     return ({
         ...state,

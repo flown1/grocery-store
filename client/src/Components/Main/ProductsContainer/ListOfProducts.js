@@ -6,11 +6,15 @@ import {addProduct} from "../../../Redux/actions/productActions";
 class ListOfProducts extends React.Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            products: this.props.products
+        }
     }
 
     render(){
         return(
-            this.props.products.map( (p) => {
+            this.state.products.map( (p) => {
                 return (
                     <Product product={p}/>
                 );

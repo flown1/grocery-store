@@ -2,7 +2,6 @@ import React from 'react';
 import '../../../Styles/products/Product.css';
 import { connect } from "react-redux";
 import { addProduct, productQuantityIncrease } from "../../../Redux/actions/productActions";
-import QuantityIndicator from "./QuantityIndicator";
 
 class Product extends React.Component {
 
@@ -32,10 +31,10 @@ class Product extends React.Component {
                 </div>
                 <hr/>
                 <div className="product-bottom">
-                    <h3 className='product-price'>${this.props.product.price}</h3>
+                    <h3 className='product-price'>${this.props.product.price}<span className="product-units">/kg</span></h3>
                     <div className="product-quantity-picker-wrapper">
                         <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handleMinusButtonClick}>-</div>
-                        <QuantityIndicator />
+                        <div>{this.props.quantity}</div>
                         <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
                     </div>
                     <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>

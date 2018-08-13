@@ -14,7 +14,9 @@ class Cart extends React.Component{
     handleOnClick(){
         this.toggleDropdown();
     }
-
+    componentWillReceiveProps(){
+        console.log("cart received new props:", this.props);
+    }
     toggleDropdown() {
         this.setState({showDropdown: !this.state.showDropdown});
 
