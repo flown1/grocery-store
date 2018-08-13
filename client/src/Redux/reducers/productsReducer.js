@@ -34,8 +34,10 @@ const handleAddProductToCart = (state, action) => {
     let found = false;
     state.cart.map( (p) => {
        if(p.id === productToAdd.id){
-           p.quantity += 1;//productToAdd.quantity;
-           found = true;
+           if(!found) {
+               p.quantity += 1;//productToAdd.quantity;
+               found = true;
+           }
        }
     });
     if(!found) {

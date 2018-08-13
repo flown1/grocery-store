@@ -1,7 +1,7 @@
 .product-box{
     height: 400px;
     width: 300px;
-    margin: 5px 15px; 
+    margin: 5px 15px;
     box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
     border-radius: 3px;
     font-family: 'Montserrat', sans-serif;
@@ -27,6 +27,11 @@
 .product-quantity-inputbox{
     width: 25px;
     text-align: center;
+}
+.product-units{
+    font-weight: 100;
+    font-size: 0.8em;
+    color: #868489;
 }
 hr{
     width: 80%;
@@ -72,7 +77,6 @@ hr{
 @keyframes focusButton{
     0%{
         box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-        
     }100%{
         box-shadow: 0 2px 3px 0 hsla(0, 0%, 0%, 0.2);
         width: 105px;
