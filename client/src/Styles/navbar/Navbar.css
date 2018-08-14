@@ -1,6 +1,13 @@
 #top-menu{
     top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: fixed;
+    z-index: 997;
+
     width: 96%;
+    background-color: #fff;
+
     text-align: center;
     justify-content: space-between;
     margin:auto;

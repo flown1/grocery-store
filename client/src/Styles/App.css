@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  margin-left: 31px;
+  margin-right: 31px;
 }
 .flex-wrapper{
   display: flex;
