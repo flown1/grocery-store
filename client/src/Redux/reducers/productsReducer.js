@@ -34,7 +34,7 @@ const handleAddProductToCart = (state, action) => {
     let found = false;
     for(let i = 0; i <state.cart.length; i++){
         if(state.cart[i].id === productToAdd.id){
-            state.cart[i].quantity += 1;//productToAdd.quantity;
+            state.cart[i].quantity += 1; //productToAdd.quantity;
             found = true;
             break;
         }
@@ -44,8 +44,6 @@ const handleAddProductToCart = (state, action) => {
             ...state.cart,
             action.payload.product
         ];
-    }else{
-        console.log("not found will send cart:", newCart);
     }
     return ({
         ...state,

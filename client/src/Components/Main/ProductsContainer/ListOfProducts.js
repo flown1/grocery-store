@@ -16,7 +16,7 @@ class ListOfProducts extends React.Component {
         return(
             this.state.products.map( (p) => {
                 return (
-                    <Product product={p}/>
+                    <Product key={p.id} product={p}/>
                 );
             })
         );     
