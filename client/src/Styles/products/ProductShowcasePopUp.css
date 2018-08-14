@@ -10,7 +10,7 @@
 }
 
 .popup-box{
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
@@ -51,10 +51,10 @@
 .products-specs-table{
     width: 80%;
 }
-.products-specs-table > tr:nth-child(even) {
+.products-specs-table > tbody > tr:nth-child(even) {
     background: lightgrey;
 }
-.products-specs-table > tr:nth-child(odd) {
+.products-specs-table > tbody > tr:nth-child(odd) {
     background: whitesmoke;
 }
 .the-x-button{

@@ -37,13 +37,16 @@ class Product extends React.Component {
         this.setState({popupShown: false});
     }
 
+    componentWillReceiveProps(){
+        console.log("Product received new props: ", this.props);
+    }
+
     render() {
         const popup = (this.state.popupShown? <ProductShowcasePopUp product={this.props.product} closePopup={this.handlePopupClose}/> : null);
 
         return (
             <div>
                 {popup}
-
                 <div className="product-box">
                     <div className="box-top">
                         <img src={this.props.product.imgUrl} className="product-picture" onClick={this.handleBoxTopClick}/>
@@ -54,7 +57,7 @@ class Product extends React.Component {
                         <h3 className='product-price'>${this.props.product.price}<span className="product-units">/kg</span></h3>
                         <div className="product-quantity-picker-wrapper">
                             <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handleMinusButtonClick}>-</div>
-                            <div>{this.props.quantity}</div>
+                            <div>{this.props.product.quantity || "---"}</div>
                             <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
                         </div>
                         <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>

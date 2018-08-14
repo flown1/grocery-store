@@ -1,20 +1,17 @@
 import React from 'react'
 import Product from './Product'
 import { connect } from 'react-redux'
-import {addProduct} from "../../../Redux/actions/productActions";
 
 class ListOfProducts extends React.Component {
-    constructor(props){
-        super(props);
 
-        this.state = {
-            products: this.props.products
-        }
+    componentWillReceiveProps(){
+        console.log("ListOfProducts received new props: ", this.props);
     }
 
     render(){
+        console.log("ListOfProducts rendering...")
         return(
-            this.state.products.map( (p) => {
+            this.props.products.map( (p) => {
                 return (
                     <Product key={p.id} product={p}/>
                 );
