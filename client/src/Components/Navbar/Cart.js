@@ -24,7 +24,7 @@ class Cart extends React.Component{
             <div>
                 <div className="cart" onClick={this.handleOnClick}>
                     <i className="fas fa-shopping-cart"></i>
-                    Cart: <div className="cart-counter">{this.props.cart.length}</div>
+                    Cart: <div className="cart-counter">{this.props.cart !== undefined && this.props.cart.length}</div>
                 </div>
                 <DropdownList showDropdown={this.state.showDropdown} cart={this.props.cart} total={this.props.total}/>
             </div>
@@ -33,8 +33,8 @@ class Cart extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    cart: state.cart,
-    total: state.total
+    cart: state.productsReducer.cart,
+    total: state.productsReducer.total
 });
 
 export default connect(mapStateToProps)(Cart);

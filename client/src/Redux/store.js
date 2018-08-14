@@ -8,4 +8,4 @@ import productsReducer from './reducers/productsReducer';
 
 const middleware = applyMiddleware(promise(), thunk, createLogger());
 
-export default createStore(productsReducer, middleware);
+export default createStore(combineReducers, middleware);

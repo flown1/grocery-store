@@ -67,7 +67,7 @@ const handleAddProductToCart = (state, action) => {
     })
 };
 
-function handleProductQuantityIncrease(state, action) {
+const handleProductQuantityIncrease = (state, action) => {
     let newProducts = [];
     state.products.map( (p) => {
         if(p.id === action.payload.product.id){
@@ -79,11 +79,21 @@ function handleProductQuantityIncrease(state, action) {
         ...state,
         products: newProducts
     })
-}
+};
 
-function handleProductQuantityDecrease(state, action) {
-    return undefined;
-}
+const handleProductQuantityDecrease = (state, action) => {
+    let newProducts = [];
+    state.products.map( (p) => {
+        if(p.id === action.payload.product.id && p.quantity > 0){
+            p.quantity -= 1;
+        }
+        newProducts.push(p);
+    });
+    return ({
+        ...state,
+        products: newProducts
+    })
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {

@@ -3,15 +3,22 @@ import Product from './Product'
 import { connect } from 'react-redux'
 
 class ListOfProducts extends React.Component {
+    state = {
+        products: this.props.products
+    };
 
     componentWillReceiveProps(){
         console.log("ListOfProducts received new props: ", this.props);
+        this.setState({
+            products: this.props.products
+        });
     }
 
     render(){
-        console.log("ListOfProducts rendering...")
+        console.log("ListOfProducts rendering...");
         return(
-            this.props.products.map( (p) => {
+            this.state.products.map( (p) => {
+                console.log("rendering product: ", p);
                 return (
                     <Product key={p.id} product={p}/>
                 );
@@ -21,7 +28,7 @@ class ListOfProducts extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    products: state.products
+    products: state.productsReducer.products
 });
 export default connect(mapStateToProps)(ListOfProducts);
 

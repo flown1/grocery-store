@@ -75,5 +75,4 @@ const mapDispatchToProps = (dispatch) => {
         productQuantityIncrease: (product) => dispatch(productQuantityIncrease(product))
     }
 };
-
 export default connect(null, mapDispatchToProps)(Product);
