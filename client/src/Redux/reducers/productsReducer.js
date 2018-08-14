@@ -7,18 +7,33 @@ const initialState = {
         price: 999,
         quantity: 1,
         imgUrl: 'http://3.bp.blogspot.com/-szPx_TTTS-Y/U4bcr0rPTRI/AAAAAAAAFyU/Y0ucPWe_qek/s1600/Kotlety+Schabowe+5.jpg',
+        desc: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            vitamins: 'B12 C12 C4 AK47',
+            origin: 'Spain'
+        }
       },{
         id:    1,
         name: 'Carrot',
         price: 123.12,
         quantity: 1,
-        imgUrl: "https://media.mercola.com/assets/images/foodfacts/carrot-nutrition-facts.jpg"
+        imgUrl: "https://media.mercola.com/assets/images/foodfacts/carrot-nutrition-facts.jpg",
+        desc: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            vitamins: 'B12 C12 C4 AK47',
+            origin: 'Italy'
+        }
       },{
         id:    2,
         name: 'Beetroot',
         price: 64,
         quantity: 1,
-        imgUrl: "http://countryfruit.uy/238-thickbox_default/remolacha.jpg"
+        imgUrl: "http://countryfruit.uy/238-thickbox_default/remolacha.jpg",
+        desc: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            vitamins: 'B12 C12 C4 AK47',
+            origin: 'Poland'
+        }
       }
     ],
     cart:[],
