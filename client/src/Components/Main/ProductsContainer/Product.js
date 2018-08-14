@@ -45,20 +45,20 @@ class Product extends React.Component {
                 {popup}
 
                 <div className="product-box">
-                <div className="box-top" onClick={this.handleBoxTopClick}>
-                    <img src={this.props.product.imgUrl} className="product-picture"/>
-                    <h2 className='product-name'>{this.props.product.name}</h2>
-                </div>
-                <hr/>
-                <div className="product-bottom">
-                    <h3 className='product-price'>${this.props.product.price}<span className="product-units">/kg</span></h3>
-                    <div className="product-quantity-picker-wrapper">
-                        <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handleMinusButtonClick}>-</div>
-                        <div>{this.props.quantity}</div>
-                        <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
+                    <div className="box-top">
+                        <img src={this.props.product.imgUrl} className="product-picture" onClick={this.handleBoxTopClick}/>
+                        <h2 className='product-name'>{this.props.product.name}</h2>
                     </div>
-                    <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>
-                </div>
+                    <hr/>
+                    <div className="box-bottom">
+                        <h3 className='product-price'>${this.props.product.price}<span className="product-units">/kg</span></h3>
+                        <div className="product-quantity-picker-wrapper">
+                            <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handleMinusButtonClick}>-</div>
+                            <div>{this.props.quantity}</div>
+                            <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
+                        </div>
+                        <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>
+                    </div>
                 </div>
             </div>
         )
