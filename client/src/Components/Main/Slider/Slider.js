@@ -1,6 +1,9 @@
 import React from "react";
 import Slider from "react-slick";
 import '../../../Styles/slider/Slider.css'
+import SliderPhoto1 from "../../../Assets/Images/slider_photo1.jpg";
+import SliderPhoto2 from "../../../Assets/Images/slider_photo2.jpg";
+import SliderPhoto3 from "../../../Assets/Images/slider_photo3.jpg";
 
 export default class FeaturedSlider extends React.Component {
     render() {
@@ -19,13 +22,13 @@ export default class FeaturedSlider extends React.Component {
             <div className="slider-wrapper">
                 <Slider {...settings}>
                     <div>
-                        <img className="slider-photo" src="https://powerscourtgardenpavilion.com/wp-content/uploads/sites/2/shutterstock_126744203.jpg"/>
+                        <img className="slider-photo" src={SliderPhoto1}/>
                     </div>
                     <div>
-                        <img className="slider-photo" src="https://cdn.images.express.co.uk/img/dynamic/13/590x/Alan-Titchmarsh-grading-tips-apple-tree-harvest-835162.jpg"/>
+                        <img className="slider-photo" src={SliderPhoto2}/>
                     </div>
                     <div>
-                        <img className="slider-photo" src="https://pixfeeds.com/images/fruits-vegetables/carrots/1200-470332802-carrots-growing.jpg"/>
+                        <img className="slider-photo" src={SliderPhoto3}/>
                     </div>
                 </Slider>
             </div>
