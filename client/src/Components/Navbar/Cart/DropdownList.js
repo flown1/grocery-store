@@ -1,5 +1,5 @@
 import React from "react";
-import '../../Styles/navbar/CartDropdownList.css';
+import '../../../Styles/navbar/CartDropdownList.css';
 import DropdownListItem from "./DropdownListItem";
 
 export default class DropdownList extends React.Component{

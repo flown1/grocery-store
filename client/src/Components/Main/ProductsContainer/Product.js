@@ -62,7 +62,7 @@ class Product extends React.Component {
                             <div>{this.props.product.quantity || "---"}</div>
                             <div className="btn-main btn-grey btn-circle btn-xs" onClick={this.handlePlusButtonClick}>+</div>
                         </div>
-                        <div className="btn-main btn-red add-to-cart-btn" onClick={this.handleButtonClick}>Buy</div>
+                        <div className="btn-main btn-red btn-md" onClick={this.handleButtonClick}>Buy</div>
                     </div>
                 </div>
             </div>

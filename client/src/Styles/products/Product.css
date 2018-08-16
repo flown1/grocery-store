@@ -62,11 +62,11 @@ hr{
     height: 20px;
     font-size: 1.1em;
 }
-.add-to-cart-btn{
+.btn-md{
     width: 100px;
     height: 25px;
 }
-.add-to-cart-btn:hover{
+.btn-md:hover{
     animation: focusButton;
     animation-duration: 0.5s;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);

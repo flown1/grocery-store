@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../Styles/navbar/Navbar.css';
 
-import Cart from './Cart.js';
-import Login from './Login.js';
+import Cart from './Cart/Cart.js';
+import Login from './Login/Login.js';
 
 export default class Navbar extends React.Component{
     render(){
