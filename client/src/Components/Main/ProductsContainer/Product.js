@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../Styles/products/Product.css';
 import { connect } from "react-redux";
-import { addProduct, productQuantityIncrease } from "../../../Redux/actions/productActions";
+import { addProduct, productQuantityIncrease, productQuantityDecrease } from "../../../Redux/actions/productActions";
 import ProductShowcasePopUp from "./ProductShowcasePopUp";
 
 class Product extends React.Component {
@@ -17,6 +17,7 @@ class Product extends React.Component {
         this.handleBoxTopClick = this.handleBoxTopClick.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);
         this.handlePlusButtonClick = this.handlePlusButtonClick.bind(this);
+        this.handleMinusButtonClick = this.handleMinusButtonClick.bind(this);
     }
     handleButtonClick(){
         this.props.addNewProduct(this.props.product);
@@ -27,6 +28,7 @@ class Product extends React.Component {
     }
 
     handleMinusButtonClick() {
+        this.props.productQuantityDecrease(this.props.product);
     }
 
     handlePlusButtonClick() {
@@ -72,7 +74,8 @@ class Product extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         addNewProduct: (product) => dispatch(addProduct(product)),
-        productQuantityIncrease: (product) => dispatch(productQuantityIncrease(product))
+        productQuantityIncrease: (product) => dispatch(productQuantityIncrease(product)),
+        productQuantityDecrease: (product) => dispatch(productQuantityDecrease(product))
     }
 };
 export default connect(null, mapDispatchToProps)(Product);

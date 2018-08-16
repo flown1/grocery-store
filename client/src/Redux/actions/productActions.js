@@ -15,3 +15,12 @@ export const productQuantityIncrease = (product) => {
         }
     }
 };
+
+export const productQuantityDecrease = (product) => {
+    return {
+        type: "PRODUCT_QUANTITY_DECREASE",
+        payload: {
+            product: product
+        }
+    }
+};
