@@ -16,10 +16,12 @@ public class Product implements Serializable {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
     private int id;
-    @Column(name="name") //id name quantity desc_text desc_vitamins desc_origin img_url
+    @Column(name="name")
     private String name;
     @Column(name="quantity")
     private int quantity;
+    @Column(name="price")
+    private double price;
     @Column(name="desc_text")
     private String desc_text;
     @Column(name="desc_vitamins")
@@ -77,5 +79,17 @@ public class Product implements Serializable {
 
     public void setImg_url(String img_url) {
         this.img_url = img_url;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
