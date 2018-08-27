@@ -51,7 +51,7 @@ class Product extends React.Component {
                 {popup}
                 <div className="product-box">
                     <div className="box-top">
-                        <img src={this.props.product.imgUrl} className="product-picture" onClick={this.handleBoxTopClick}/>
+                        <img src={this.props.product.imgUrl} alt={this.props.product.name} className="product-picture" onClick={this.handleBoxTopClick}/>
                         <h2 className='product-name'>{this.props.product.name}</h2>
                     </div>
                     <hr/>
@@ -68,7 +68,6 @@ class Product extends React.Component {
             </div>
         )
     }
-
 }
 
 const mapDispatchToProps = (dispatch) => {

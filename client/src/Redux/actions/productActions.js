@@ -5,7 +5,7 @@ export const addProduct = (product) => {
           product: product
       }
     }
-}
+};
 
 export const productQuantityIncrease = (product) => {
     return {
@@ -21,6 +21,30 @@ export const productQuantityDecrease = (product) => {
         type: "PRODUCT_QUANTITY_DECREASE",
         payload: {
             product: product
+        }
+    }
+};
+
+export const productsFetchBegin = () => {
+    return {
+        type: "PRODUCTS_FETCH_BEGIN"
+    }
+};
+
+export const productsFetchSuccess = (products) => {
+    return {
+        type: "PRODUCTS_FETCH_SUCCESS",
+        payload: {
+            products: products
+        }
+    }
+};
+
+export const productsFetchFailure = (error) => {
+    return {
+        type: "PRODUCTS_FETCH_FAILURE",
+        payload: {
+            error: error
         }
     }
 };

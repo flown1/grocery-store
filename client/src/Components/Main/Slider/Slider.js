@@ -16,19 +16,17 @@ export default class FeaturedSlider extends React.Component {
             slidesToScroll: 1
         };
 
-        //this component should fetch for sliders photos
-
         return (
             <div className="slider-wrapper">
                 <Slider {...settings}>
                     <div>
-                        <img className="slider-photo" src={SliderPhoto1}/>
+                        <img className="slider-photo" alt={"promo-slider"} src={SliderPhoto1}/>
                     </div>
                     <div>
-                        <img className="slider-photo" src={SliderPhoto2}/>
+                        <img className="slider-photo" alt={"promo-slider"} src={SliderPhoto2}/>
                     </div>
                     <div>
-                        <img className="slider-photo" src={SliderPhoto3}/>
+                        <img className="slider-photo" alt={"promo-slider"} src={SliderPhoto3}/>
                     </div>
                 </Slider>
             </div>

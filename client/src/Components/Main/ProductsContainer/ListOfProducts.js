@@ -16,19 +16,26 @@ class ListOfProducts extends React.Component {
 
     render(){
         console.log("ListOfProducts rendering...");
-        return(
-            this.state.products.map( (p) => {
-                console.log("rendering product: ", p);
-                return (
-                    <Product key={p.id} product={p}/>
-                );
-            })
-        );     
+        if(this.props.products.loading){
+            console.log("loading...");
+            return (<div>Loading...</div>);
+        }else{
+            console.log("Loading DONE");
+            return(
+                this.props.products.map( (p) => {
+                    console.log("rendering product: ", p);
+                    return (
+                        <Product key={p.id} product={p}/>
+                    );
+                })
+            );
+        }
     }
 }
 
 const mapStateToProps = state => ({
-    products: state.productsReducer.products
+    products: state.productsReducer.products,
+    loading: state.productsReducer.loading
 });
 export default connect(mapStateToProps)(ListOfProducts);
 
