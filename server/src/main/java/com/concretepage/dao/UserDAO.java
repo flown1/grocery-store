@@ -1,6 +1,6 @@
 package com.concretepage.dao;
 
-import com.concretepage.entity.Product;
+import com.concretepage.entity.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,33 +10,38 @@ import java.util.List;
 
 @Transactional
 @Repository
-public class ProductDAO implements IProductDAO {
+public class UserDAO implements IUserDAO {
     @PersistenceContext
     private EntityManager entityManager;
+
     @Override
-    public Product getProductById(int productId) {
-        return entityManager.find(Product.class, productId);
+    public User getUserById(int userId) {
+        return entityManager.find(User.class, userId);
     }
+
     @SuppressWarnings("unchecked")
     @Override
-    public List<Product> getAllProducts() {
-        String hql = "FROM Product as prod1 ORDER BY prod1.id";
-        return (List<Product>) entityManager.createQuery(hql).getResultList();
+    public List<User> getAllUsers() {
+        String hql = "FROM Users as user1 ORDER BY users.id";
+        return (List<User>) entityManager.createQuery(hql).getResultList();
     }
+
     @Override
-    public void addProduct(Product product) {
-        entityManager.persist(product);
+    public void addUser(User user) {
+        entityManager.persist(user);
     }
-//    @Override
-//    public void updateUser(Product product) {
-//        Product prod1 = getArticleById(product.getProductId());
-//        prod1.setTitle(product.getTitle());
-//        prod1.setCategory(product.getCategory());
+
+    @Override
+    public void updateUser(User user) {
+//        User user1 = getArticleById(user.getProductId());
+//        user1.setTitle(user.getTitle());
+//        user1.setCategory(user.getCategory());
 //        entityManager.flush();
-//    }
+    }
+
     @Override
-    public void deleteProduct(int productId) {
-        entityManager.remove(getProductById(productId));
+    public void deleteUser(int userId) {
+        entityManager.remove(getUserById(userId));
     }
 //    @Override
 //    public boolean articleExists(String title, String category) {

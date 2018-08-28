@@ -29,8 +29,8 @@ public class ProductService implements IProductService {
 //        }
     }
 //    @Override
-//    public void updateProduct(Product product) {
-//        productDAO.updateProduct(product);
+//    public void updateUser(Product product) {
+//        productDAO.updateUser(product);
 //    }
     @Override
     public void deleteProduct(int productId) {
