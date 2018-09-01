@@ -36,5 +36,4 @@ public class UserService implements IUserService {
     public void deleteUser(int userId) {
         userDAO.deleteUser(userId);
     }
-
 }

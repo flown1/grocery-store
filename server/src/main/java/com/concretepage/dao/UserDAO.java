@@ -22,7 +22,7 @@ public class UserDAO implements IUserDAO {
     @SuppressWarnings("unchecked")
     @Override
     public List<User> getAllUsers() {
-        String hql = "FROM Users as user1 ORDER BY users.id";
+        String hql = "FROM User as user1 ORDER BY user1.id";
         return (List<User>) entityManager.createQuery(hql).getResultList();
     }
 

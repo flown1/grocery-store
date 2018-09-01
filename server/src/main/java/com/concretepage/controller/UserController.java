@@ -2,6 +2,7 @@ package com.concretepage.controller;
 
 import com.concretepage.entity.Article;
 import com.concretepage.entity.User;
+import com.concretepage.entity.utils.SignInInfo;
 import com.concretepage.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,42 +15,59 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @Controller
+@RequestMapping("users")
 public class UserController {
     @Autowired
     private IUserService userService;
 
-    @GetMapping("article/{id}")
-    public ResponseEntity<User> getArticleById(@PathVariable("id") Integer id) {
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("user/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
         User user = userService.getUserById(id);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
-    @GetMapping("articles")
-    public ResponseEntity<List<User>> getAllArticles() {
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("users")
+    public ResponseEntity<List<User>> getAllUsers() {
         List<User> list = userService.getAllUsers();
         return new ResponseEntity<List<User>>(list, HttpStatus.OK);
     }
 
-    @PostMapping("article")
-    public ResponseEntity<Void> addArticle(@RequestBody User user, UriComponentsBuilder builder) {
-        boolean flag = userService.addUser(user);
-        if (flag == false) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/article/{id}").buildAndExpand(user.getUserId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-    }
-
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("user")
-    public ResponseEntity<User> updateArticle(@RequestBody User user) {
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
         userService.updateUser(user);
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("user/{id}")
-    public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("signIn")
+    public ResponseEntity<User> signIn(@RequestBody SignInInfo signInInfo, UriComponentsBuilder builder){
+        List<User> list = userService.getAllUsers();
+        System.out.println(signInInfo.email + " : " + signInInfo.password);
+        for(User user : list){
+            if(user.getEmail().equals(signInInfo.email)) {
+                if(user.getPassword().equals(signInInfo.password)) {
+                    System.out.println(user.getEmail() + " found!");
+                    return new ResponseEntity<User>(user, HttpStatus.OK);
+                }
+            }
+        }
+        return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping("signUp")
+    public ResponseEntity<User> signUp(@RequestBody User user, UriComponentsBuilder builder) {
+        //bla bla bla
+        return null;
     }
 }

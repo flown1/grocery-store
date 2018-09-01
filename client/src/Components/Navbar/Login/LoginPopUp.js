@@ -1,5 +1,7 @@
 import React from "react";
 import "../../../Styles/navbar/Login/LoginPopUp.css";
+import * as ApiFetcher from "../../../Utils/ApiFetcher";
+import update from 'immutability-helper';
 
 export default class LoginPopUp extends React.Component{
     constructor(){
@@ -7,22 +9,12 @@ export default class LoginPopUp extends React.Component{
         this.state = {
             displaySignUpFormInstead: false,
 
-            credentials:{
-                signIn:{
-                    email: '',
-                    password: ''
-                },
-                signUp:{
-                    firstName: '',
-                    lastName: '',
-                    address: {
-                        address: '',
-                        zipCode: ''
-                    },
-                    email: '',
-                    password: ''
-                }
-            }
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+            zipCode: ''
         };
 
         this.validateInput = this.validateInput.bind(this);
@@ -32,20 +24,46 @@ export default class LoginPopUp extends React.Component{
     }
 
     validateInput(){
-
+        return true;
     }
 
-    handleOnSubmitSignIn(){
-        this.validateInput();
+    handleOnSubmitSignIn(e){
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+        console.log(`click sign in with values: ${this.state.email} : ${this.state.password}`);
+        if(this.validateInput()){
+            ApiFetcher.signInUser({
+                'email': this.state.email,
+                'password': this.state.password
+            }, (data) => {
+                if(data.status === 200)
+                    console.log(`Nice! got user: `, data);
+                else if(data.status === 204)
+                    console.log('')
+            });
+        }
     }
 
-    handleOnSubmitSignUp(){
+    handleOnSubmitSignUp(e){
+        e.stopPropagation();
+        e.nativeEvent.stopImmediatePropagation();
+
+        console.log(`click sign up`);
         this.validateInput();
     }
 
     handleSingUpLinkClicked() {
         this.setState({displaySignUpFormInstead: true});
     }
+
+
+    handleOnChangeInputSignInEmail = (e) => {
+        this.setState({...this.state, email: e.target.value});
+    };
+
+    handleOnChangeInputSignInPassword = (e) => {
+        this.setState({...this.state, password: e.target.value});
+    };
 
     render(){
         const content = this.state.displaySignUpFormInstead ?
@@ -93,7 +111,7 @@ export default class LoginPopUp extends React.Component{
                                 <input className="popup-box-input"/>
                             </div>
                         </div>
-                        <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignUp()}>Sign Up</div>
+                        <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignUp}>Sign Up</div>
                     </form>
                 </div>
             </div>
@@ -105,10 +123,10 @@ export default class LoginPopUp extends React.Component{
                     <div className="form-wrapper">
                         <form>
                             <label>E-mail:</label>
-                            <input className="popup-box-input"/>
+                            <input className="popup-box-input" onChange={this.handleOnChangeInputSignInEmail}/>
                             <label>Password:</label>
-                            <input className="popup-box-input"/>
-                            <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignIn()}>Sign In</div>
+                            <input className="popup-box-input" onChange={this.handleOnChangeInputSignInPassword}/>
+                            <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignIn}>Sign In</div>
                         </form>
                     </div>
                     <div className="sign-up-link-wrapper">
