@@ -55,6 +55,10 @@
     margin: 5px 8px;
 }
 
+.error-box{
+    color: red;
+    font-size: 12px;
+}
 .the-x-button{
     cursor: pointer;
     position: relative;

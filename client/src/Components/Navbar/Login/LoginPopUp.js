@@ -1,13 +1,15 @@
 import React from "react";
 import "../../../Styles/navbar/Login/LoginPopUp.css";
 import * as ApiFetcher from "../../../Utils/ApiFetcher";
-import update from 'immutability-helper';
+import {userSignedIn} from "../../../Redux/actions/userActions";
+import {connect} from "react-redux";
 
-export default class LoginPopUp extends React.Component{
+class LoginPopUp extends React.Component{
     constructor(){
         super();
         this.state = {
             displaySignUpFormInstead: false,
+            errorMsg: '',
 
             email: '',
             password: '',
@@ -36,11 +38,18 @@ export default class LoginPopUp extends React.Component{
                 'email': this.state.email,
                 'password': this.state.password
             }, (data) => {
-                if(data.status === 200)
+                if(data) {
                     console.log(`Nice! got user: `, data);
-                else if(data.status === 204)
-                    console.log('')
-            });
+                    this.setState({
+                        errorMsg: ''
+                    });
+                    this.props.onUserSignedIn(data);
+
+                }else{
+                    console.log('Email or password incorrect');
+                    this.setState({errorMsg: 'Email or password incorrect'})
+                }
+           });
         }
     }
 
@@ -126,6 +135,7 @@ export default class LoginPopUp extends React.Component{
                             <input className="popup-box-input" onChange={this.handleOnChangeInputSignInEmail}/>
                             <label>Password:</label>
                             <input className="popup-box-input" onChange={this.handleOnChangeInputSignInPassword}/>
+                            <div className="error-box">{this.state.errorMsg}</div>
                             <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignIn}>Sign In</div>
                         </form>
                     </div>
@@ -145,6 +155,15 @@ export default class LoginPopUp extends React.Component{
             </div>
         )
     }
-
-
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onUserSignedIn: (user) => {
+            console.log("blblblb");
+            dispatch(userSignedIn(user));
+        }
+    }
+};
+
+export default connect(null, mapDispatchToProps)(LoginPopUp);

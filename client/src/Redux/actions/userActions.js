@@ -7,3 +7,12 @@ export const signIn = (email, password) => {
         }
     }
 };
+
+export const userSignedIn = (user) => {
+    return {
+        type: "USER_SIGNED_IN",
+        payload: {
+            user: user
+        }
+    }
+};

@@ -35,7 +35,10 @@ export function signInUser(user, callback){
     )
     .then( data => data.json())
     .then( (data) => {
-        console.log(data);
         callback(data);
+    })
+    .catch( (err) => {
+        console.log("Unexpected error while fetching:", err);
+        callback(null);
     });
 }
