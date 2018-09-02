@@ -29,7 +29,8 @@ public class User implements Serializable {
     private String city;
     @Column(name="zip_code")
     private String zipCode;
-
+    @Column(name="is_admin")
+    private Boolean isAdmin;
 
     public int getUserId() {
         return id;
@@ -75,5 +76,13 @@ public class User implements Serializable {
     }
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

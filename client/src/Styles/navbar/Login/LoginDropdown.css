@@ -1,0 +1,29 @@
+.dropdown-list{
+    position: absolute;
+    z-index: 999;
+    min-height: 200px;
+    max-height: 500px;
+    width: 160px;
+    padding: 18px;
+    top: 70px;
+    right: 30px;
+    background-color: #efefef;
+
+    box-shadow: #dfdfdf 3px 3px 3px;
+}
+
+.dropdown-hidden{
+    display: none;
+}
+
+.dropdown-visible{
+    display: block;
+}
+
+.account-status-info{
+
+}
+
+.admin{
+    color: red;
+}

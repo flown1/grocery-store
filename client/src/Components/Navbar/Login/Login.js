@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import ProductShowcasePopUp from "../../Main/ProductsContainer/ProductShowcasePopUp";
 import LoginPopUp from "./LoginPopUp";
+import DropdownList from "../Cart/DropdownList";
+import LoginDropdown from "./LoginDropdown";
 
 class Login extends React.Component{
     constructor(){
@@ -42,9 +44,12 @@ class Login extends React.Component{
             )
         }else{
             return(
-                <div className="user" onClick={this.handleToggleClickWhenSignedIn}>
-                    <i className="fas fa-user"></i>
-                    Hello, {this.props.userInfo.firstName} {this.props.userInfo.lastName}
+                <div>
+                    <div className="user" onClick={this.handleToggleClickWhenSignedIn}>
+                        <i className="fas fa-user"></i>
+                        Hello, {this.props.userInfo.firstName} {this.props.userInfo.lastName}
+                    </div>
+                    <LoginDropdown showDropdown={this.state.showMenu} userInfo={this.props.userInfo}/>
                 </div>
             )
         }
