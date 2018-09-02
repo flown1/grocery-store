@@ -66,8 +66,12 @@ public class UserController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("signUp")
-    public ResponseEntity<User> signUp(@RequestBody User user, UriComponentsBuilder builder) {
-        //bla bla bla
-        return null;
+    public ResponseEntity<Void> signUp(@RequestBody User user, UriComponentsBuilder builder) {
+        System.out.println("DUPA KURWA");
+        boolean flag = userService.addUser(user);
+        if (flag == false) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 }

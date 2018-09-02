@@ -10,6 +10,7 @@ class LoginPopUp extends React.Component{
         this.state = {
             displaySignUpFormInstead: false,
             errorMsg: '',
+            repassword: '',
 
             email: '',
             password: '',
@@ -58,20 +59,65 @@ class LoginPopUp extends React.Component{
         e.nativeEvent.stopImmediatePropagation();
 
         console.log(`click sign up`);
-        this.validateInput();
+        if(this.validateInput()){
+            ApiFetcher.signUpUser({
+                'email': this.state.email,
+                'password': this.state.password,
+                'firstName': this.state.firstName,
+                'lastName': this.state.lastName,
+                'address': this.state.address,
+                'zipCode': this.state.zipCode
+            }, (data) => {
+                console.log("got data :", data);
+                if (data) {
+                    if (data.status === 201) {
+                        this.setState({
+                            displaySignUpFormInstead: true,
+                            errorMsg: 'Sign Up SUCCESS! You can now sign in!'
+                        });
+                    } else if (data.status === 409) {
+                        console.log('Email or password incorrect');
+                        this.setState({errorMsg: 'User with given email already exists'})
+                    }
+                }
+            });
+        }
     }
 
     handleSingUpLinkClicked() {
         this.setState({displaySignUpFormInstead: true});
     }
 
+    handleOnChangeInputFirstName = (e) => {
+        this.setState({...this.state, firstName: e.target.value});
+    };
 
-    handleOnChangeInputSignInEmail = (e) => {
+    handleOnChangeInputLastName = (e) => {
+        this.setState({...this.state, lastName: e.target.value});
+    };
+
+    handleOnChangeInputRePassword = (e) => {
+        this.setState({...this.state, repassword: e.target.value});
+    };
+
+    handleOnChangeInputEmail = (e) => {
         this.setState({...this.state, email: e.target.value});
     };
 
-    handleOnChangeInputSignInPassword = (e) => {
+    handleOnChangeInputPassword = (e) => {
         this.setState({...this.state, password: e.target.value});
+    };
+
+    handleOnChangeInputCity = (e) => {
+        this.setState({...this.state, city: e.target.value});
+    };
+
+    handleOnChangeInputAddress = (e) => {
+        this.setState({...this.state, address: e.target.value});
+    };
+
+    handleOnChangeInputZipCode = (e) => {
+        this.setState({...this.state, zipCode: e.target.value});
     };
 
     render(){
@@ -85,39 +131,39 @@ class LoginPopUp extends React.Component{
                         <div className="form-signup-column">
                             <div className="form-signup-row">
                                 <label>First Name:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputFirstName}/>
                             </div>
                             <div className="form-signup-row">
                                 <label>Last Name:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputLastName}/>
                             </div>
                         </div>
                         <div className="form-signup-column">
                             <div className="form-signup-row">
                                 <label>E-mail:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputEmail}/>
                             </div>
                             <div className="form-signup-row">
                                 <label>Password:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputPassword}/>
                             </div>
                             <div className="form-signup-row">
                                 <label>Repeat password:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputRePassword}/>
                             </div>
                         </div>
                         <div className="form-signup-column">
                             <div className="form-signup-row">
                                 <label>Address:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputAddress}/>
                             </div>
                             <div className="form-signup-row">
                                 <label>City:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputCity}/>
                             </div>
                             <div className="form-signup-row">
                                 <label>Zip Code:</label>
-                                <input className="popup-box-input"/>
+                                <input className="popup-box-input" onChange={this.handleOnChangeInputZipCode}/>
                             </div>
                         </div>
                         <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignUp}>Sign Up</div>
@@ -131,10 +177,10 @@ class LoginPopUp extends React.Component{
                     </div>
                     <div className="form-wrapper">
                         <form>
-                            <label>E-mail:</label>
-                            <input className="popup-box-input" onChange={this.handleOnChangeInputSignInEmail}/>
-                            <label>Password:</label>
-                            <input className="popup-box-input" onChange={this.handleOnChangeInputSignInPassword}/>
+                            <label for="email">E-mail:</label>
+                            <input id="email" className="popup-box-input" onChange={this.handleOnChangeInputEmail}/>
+                            <label for="password">Password:</label>
+                            <input id="password" type="password" className="popup-box-input" onChange={this.handleOnChangeInputPassword}/>
                             <div className="error-box">{this.state.errorMsg}</div>
                             <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignIn}>Sign In</div>
                         </form>
@@ -160,7 +206,6 @@ class LoginPopUp extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         onUserSignedIn: (user) => {
-            console.log("blblblb");
             dispatch(userSignedIn(user));
         }
     }

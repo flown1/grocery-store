@@ -10,4 +10,5 @@ public interface IUserDAO {
     void addUser(User user);
     void deleteUser(int id);
     void updateUser(User user);
+    boolean userExists(String email);
 }

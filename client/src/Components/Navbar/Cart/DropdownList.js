@@ -14,7 +14,7 @@ export default class DropdownList extends React.Component{
                     );
                 })}
                 <div className="dropdown-list-fixed">
-                    Total: {this.props.total}
+                    Total: ${this.props.total}
                     <div className="btn btn-main btn-red">Checkout</div>
                 </div>
             </div>

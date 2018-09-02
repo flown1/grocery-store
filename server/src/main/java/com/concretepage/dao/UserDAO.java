@@ -43,11 +43,12 @@ public class UserDAO implements IUserDAO {
     public void deleteUser(int userId) {
         entityManager.remove(getUserById(userId));
     }
-//    @Override
-//    public boolean articleExists(String title, String category) {
-//        String hql = "FROM Product as prod1 WHERE prod1.id = ?";
-//        int count = entityManager.createQuery(hql).setParameter(1, title)
-//                .setParameter(2, category).getResultList().size();
-//        return count > 0 ? true : false;
-//    }
+
+    @Override
+    public boolean userExists(String email) {
+        String hql = "FROM User as user WHERE user.email = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, email)
+                .getResultList().size();
+        return count > 0 ? true : false;
+    }
 }

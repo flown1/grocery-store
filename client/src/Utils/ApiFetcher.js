@@ -38,7 +38,26 @@ export function signInUser(user, callback){
         callback(data);
     })
     .catch( (err) => {
-        console.log("Unexpected error while fetching:", err);
+        console.log("Unexpected error while signing in:", err);
+        callback(null);
+    });
+}
+
+export function signUpUser(user,callback){
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_ACTIONS.SIGN_IN,
+        Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
+            {
+                body: JSON.stringify(user)
+            }
+        )
+    )
+    .then( data => data.json())
+    .then( (data) => {
+        console.log("here is data: ", data);
+        callback(data);
+    })
+    .catch( (err) => {
+        console.log("Unexpected error while signing up:", err);
         callback(null);
     });
 }
