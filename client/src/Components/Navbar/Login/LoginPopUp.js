@@ -58,7 +58,6 @@ class LoginPopUp extends React.Component{
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
 
-        console.log(`click sign up`);
         if(this.validateInput()){
             ApiFetcher.signUpUser({
                 'email': this.state.email,

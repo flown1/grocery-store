@@ -39,10 +39,6 @@ class Product extends React.Component {
         this.setState({popupShown: false});
     }
 
-    componentWillReceiveProps(){
-        console.log("Product received new props: ", this.props);
-    }
-
     render() {
         const popup = (this.state.popupShown? <ProductShowcasePopUp product={this.props.product} closePopup={this.handlePopupClose}/> : null);
 

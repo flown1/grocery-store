@@ -4,26 +4,25 @@ import { connect } from 'react-redux'
 
 class ListOfProducts extends React.Component {
     state = {
-        products: this.props.products
+        products: this.props.products,
     };
 
     componentWillReceiveProps(){
-        console.log("ListOfProducts received new props: ", this.props);
         this.setState({
-            products: this.props.products
+            products: this.props.products,
         });
     }
 
     render(){
-        console.log("ListOfProducts rendering...");
         if(this.props.products.loading){
             console.log("loading...");
             return (<div>Loading...</div>);
         }else{
-            console.log("Loading DONE");
+
+            let products = this.props.filteredProducts? this.props.filteredProducts: this.props.products;
+
             return(
-                this.props.products.map( (p) => {
-                    console.log("rendering product: ", p);
+                products.map( (p) => {
                     return (
                         <Product key={p.id} product={p}/>
                     );
@@ -35,6 +34,7 @@ class ListOfProducts extends React.Component {
 
 const mapStateToProps = state => ({
     products: state.productsReducer.products,
+    filteredProducts: state.productsReducer.filteredProducts,
     loading: state.productsReducer.loading
 });
 export default connect(mapStateToProps)(ListOfProducts);

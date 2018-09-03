@@ -48,3 +48,12 @@ export const productsFetchFailure = (error) => {
         }
     }
 };
+
+export const productsFilter = (searchQuery) => {
+    return {
+        type: "PRODUCTS_FILTER",
+        payload: {
+            searchQuery: searchQuery
+        }
+    }
+}

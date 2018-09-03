@@ -11,8 +11,9 @@ import connect from "react-redux/es/connect/connect";
 import {
     productsFetchBegin,
     productsFetchFailure,
-    productsFetchSuccess
+    productsFetchSuccess, productsFilter
 } from "./Redux/actions/productActions";
+import SearchBar from "./Components/Main/ProductsContainer/SearchBar";
 
 class App extends Component {
 
@@ -25,8 +26,10 @@ class App extends Component {
             <Navbar />
             <FeaturedSlider />
             <div className="horizontal-separator"></div>
-            <div className="flex-wrapper list-of-products-wrapper">
-              <ListOfProducts/>
+              <SearchBar onChange={this.props.searchProducts}/>
+
+              <div className="flex-wrapper list-of-products-wrapper">
+                <ListOfProducts/>
             </div>
               <Footer/>
           </div>
@@ -45,7 +48,7 @@ const mapDispatchToProps = (dispatch) => {
                     dispatch(productsFetchFailure("Couldn't fetch any products"));
                 }
             });
-        }
+        },
     }
 };
 

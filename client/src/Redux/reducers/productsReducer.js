@@ -1,6 +1,7 @@
 const initialState = {
 
     products: [],
+    filteredProducts: this.products,
     loading: false,
     error: null,
     cart:[],
@@ -76,6 +77,7 @@ const handleProductsFetchSuccess = (state, action) => {
     return ({
         ...state,
         products: action.payload.products,
+        filteredProducts: action.payload.products,
         loading: false,
         error: null
     });
@@ -86,6 +88,20 @@ const handleProductsFetchFailure = (state, action) => {
         ...state,
         loading: false,
         error: action.payload.error
+    });
+};
+
+const handleProductsFilter = (state, action) => {
+    let newFilteredProducts = [];
+
+    newFilteredProducts = state.products.filter((prod) => {
+        if(action.payload.searchQuery === '')
+            return state.products;
+        return prod.name.toLowerCase().includes(action.payload.searchQuery.toLowerCase());
+    });
+    return ({
+        ...state,
+        filteredProducts: newFilteredProducts
     });
 };
 
@@ -103,6 +119,8 @@ export default function reducer(state = initialState, action) {
           return handleProductsFetchSuccess(state, action);
     case "PRODUCTS_FETCH_FAILURE":
           return handleProductsFetchFailure(state, action);
+    case "PRODUCTS_FILTER":
+          return handleProductsFilter(state, action);
     default:
         return state
   }
