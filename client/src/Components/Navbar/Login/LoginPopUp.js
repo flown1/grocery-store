@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../Styles/navbar/Login/LoginPopUp.css";
 import * as ApiFetcher from "../../../Utils/ApiFetcher";
+import * as InputValidator from "../../../Utils/InputValidator";
 import {userSignedIn} from "../../../Redux/actions/userActions";
 import {connect} from "react-redux";
 
@@ -27,7 +28,20 @@ class LoginPopUp extends React.Component{
     }
 
     validateInput(){
-        return true;
+
+        const firstNameValid = !InputValidator.isEmpty(this.state.firstName) && InputValidator.lettersOnly(this.state.firstName) && InputValidator.lengthInRange(this.state.firstName, 2, 20),
+                lastNameValid = !InputValidator.isEmpty(this.state.lastName) && InputValidator.lettersOnly(this.state.lastName) && InputValidator.lengthInRange(this.state.lastName, 2, 20),
+                emailValid = !InputValidator.isEmpty(this.state.email) && InputValidator.isEmail(this.state.email),
+                passwordValid = !InputValidator.isEmpty(this.state.password) && InputValidator.passwordsEqual(this.state.password, this.state.repassword),
+                repasswordValid = !InputValidator.isEmpty(this.state.repassword),
+                cityValid = !InputValidator.isEmpty(this.state.city) && InputValidator.lettersOnly(this.state.city),
+                addressValid = !InputValidator.isEmpty(this.state.address) && InputValidator.isAddress(this.state.address),
+                zipCodeValid = !InputValidator.isEmpty(this.state.zipCode) && InputValidator.isZipcode(this.state.zipCode);
+
+        if(firstNameValid && lastNameValid && emailValid && passwordValid && repasswordValid && cityValid && addressValid && zipCodeValid)
+            return true;
+        else
+            return false;
     }
 
     handleOnSubmitSignIn(e){
@@ -51,6 +65,8 @@ class LoginPopUp extends React.Component{
                     this.setState({errorMsg: 'Email or password incorrect'})
                 }
            });
+        }else{
+            this.setState({errorMsg: "Invalid input. Check form fields and try again"});
         }
     }
 
@@ -65,21 +81,22 @@ class LoginPopUp extends React.Component{
                 'firstName': this.state.firstName,
                 'lastName': this.state.lastName,
                 'address': this.state.address,
+                'city': this.state.city,
                 'zipCode': this.state.zipCode
             }, (data) => {
                 console.log("got data :", data);
-                if (data) {
-                    if (data.status === 201) {
-                        this.setState({
-                            displaySignUpFormInstead: true,
-                            errorMsg: 'Sign Up SUCCESS! You can now sign in!'
-                        });
-                    } else if (data.status === 409) {
-                        console.log('Email or password incorrect');
-                        this.setState({errorMsg: 'User with given email already exists'})
-                    }
+                if (data.status === 201) {
+                    this.setState({
+                        displaySignUpFormInstead: true,
+                        errorMsg: 'Sign Up SUCCESS! You can now sign in!'
+                    });
+                } else if (data.status === 409) {
+                    console.log('Email already in use');
+                    this.setState({errorMsg: 'User with given email already exists'})
                 }
             });
+        } else {
+            this.setState({errorMsg : 'Invalid input. Check form fields and try again'})
         }
     }
 
@@ -165,8 +182,9 @@ class LoginPopUp extends React.Component{
                                 <input className="popup-box-input" onChange={this.handleOnChangeInputZipCode}/>
                             </div>
                         </div>
-                        <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignUp}>Sign Up</div>
                     </form>
+                    <div className="error-box">{this.state.errorMsg}</div>
+                    <div className="btn btn-main btn-md btn-red" onClick={this.handleOnSubmitSignUp}>Sign Up</div>
                 </div>
             </div>
 

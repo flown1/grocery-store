@@ -19,12 +19,21 @@ const handleUserSignedIn = (state, action) => {
     });
 };
 
+const handleUserSignedOut = (state, action) =>{
+    return ({
+        ...state,
+        isLoggedIn: action.payload.isLoggedIn
+    });
+}
+
 export default function reducer(state = initialState, action) {
     switch(action.type){
         case 'USER_SIGN_IN':
             return handleUserSignIn(state, action);
         case 'USER_SIGNED_IN':
             return handleUserSignedIn(state, action);
+        case 'USER_SIGNED_OUT':
+            return handleUserSignedOut(state, action);
     }
     return state;
 }

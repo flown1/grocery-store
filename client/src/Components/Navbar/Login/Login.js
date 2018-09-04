@@ -4,6 +4,8 @@ import ProductShowcasePopUp from "../../Main/ProductsContainer/ProductShowcasePo
 import LoginPopUp from "./LoginPopUp";
 import DropdownList from "../Cart/DropdownList";
 import LoginDropdown from "./LoginDropdown";
+import {productsFilter} from "../../../Redux/actions/productActions";
+import {signOut} from "../../../Redux/actions/userActions";
 
 class Login extends React.Component{
     constructor(){
@@ -49,7 +51,7 @@ class Login extends React.Component{
                         <i className="fas fa-user"></i>
                         Hello, {this.props.userInfo.firstName} {this.props.userInfo.lastName}
                     </div>
-                    <LoginDropdown showDropdown={this.state.showMenu} userInfo={this.props.userInfo}/>
+                    <LoginDropdown showDropdown={this.state.showMenu} userInfo={this.props.userInfo} onClickHandle={this.props.signOut}/>
                 </div>
             )
         }
@@ -59,4 +61,13 @@ const mapStateToProps = (state) => ({
     isLoggedIn: state.userReducer.isLoggedIn,
     userInfo: state.userReducer.userInfo
 });
-export default connect(mapStateToProps)(Login);
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signOut: () => {
+            dispatch(signOut())
+        }
+    }
+}
+
+export default connect( mapStateToProps, mapDispatchToProps)(Login);

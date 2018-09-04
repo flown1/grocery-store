@@ -28,15 +28,21 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public void addUser(User user) {
+        user.setAdmin(false);
         entityManager.persist(user);
     }
 
     @Override
-    public void updateUser(User user) {
-//        User user1 = getArticleById(user.getProductId());
-//        user1.setTitle(user.getTitle());
-//        user1.setCategory(user.getCategory());
-//        entityManager.flush();
+    public void updateUser(User newUser) {
+        User user = getUserById(newUser.getUserId());
+        user.setFirstName(newUser.getFirstName());
+        user.setLastName(newUser.getLastName());
+        user.setAddress(newUser.getAddress());
+        user.setCity(newUser.getCity());
+        user.setEmail(newUser.getEmail());
+        user.setZipCode(newUser.getZipCode());
+
+        entityManager.flush();
     }
 
     @Override

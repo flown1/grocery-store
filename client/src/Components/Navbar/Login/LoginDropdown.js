@@ -12,6 +12,7 @@ export default class LoginDropdown extends React.Component{
                     <div>{this.props.userInfo.address || "-"}</div>
                     <div>{this.props.userInfo.zipCode || "-"} {this.props.userInfo.city || "-"}</div>
                     {isAdmin}
+                    <button className="btn btn-red" onClick={this.props.onClickHandle}>Sign Out</button>
                 </div>
             </div>
         );

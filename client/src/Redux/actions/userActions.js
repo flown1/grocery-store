@@ -16,3 +16,12 @@ export const userSignedIn = (user) => {
         }
     }
 };
+
+export const signOut = () => {
+    return {
+        type: "USER_SIGNED_OUT",
+        payload: {
+            isLoggedIn: false
+        }
+    }
+};
