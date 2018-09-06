@@ -14,21 +14,43 @@ import {
     productsFetchSuccess, productsFilter
 } from "./Redux/actions/productActions";
 import SearchBar from "./Components/Main/ProductsContainer/SearchBar";
+import ProductShowcasePopUp from "./Components/Main/ProductsContainer/ProductShowcasePopUp";
+import AddingProductPopUp from "./Components/Main/ProductsContainer/AddingProductPopUp";
 
 class App extends Component {
+    state = {
+        showAddProductPopUp: false
+    };
 
     componentDidMount() {
         this.props.fetchProducts();
     }
+
+    handleButtonClick = (e) => {
+        e.preventDefault();
+        this.setState({
+            showAddProductPopUp : true
+        })
+    };
+
+    handlePopupClose = () => {
+        this.setState({showAddProductPopUp: false});
+    };
+
     render() {
-    return (
+        const popup = (this.state.showAddProductPopUp? <AddingProductPopUp closePopup={this.handlePopupClose}/> : null);
+
+        return (
           <div className="App">
+              {popup}
             <Navbar />
             <FeaturedSlider />
             <div className="horizontal-separator"></div>
               <SearchBar onChange={this.props.searchProducts}/>
+              <button class="btn btn-red btn-md" onClick={this.handleButtonClick}>+ Add Product</button>
 
               <div className="flex-wrapper list-of-products-wrapper">
+
                 <ListOfProducts/>
             </div>
               <Footer/>
