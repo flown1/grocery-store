@@ -1,6 +1,9 @@
 export const isEmpty = (input) => {
-    return input === undefined && input.length === 0;
-}
+    if(input === undefined) {
+        return true;
+    }
+    return input.length === 0;
+};
 
 export function isAddress(address) {
     return true;

@@ -11,5 +11,5 @@ public interface IProductDAO {
     void addProduct(Product product);
 //    void updateUser(Product product);
     void deleteProduct(int productId);
-//    boolean articleExists(String title, String category);
+    boolean productExists(String name);
 }

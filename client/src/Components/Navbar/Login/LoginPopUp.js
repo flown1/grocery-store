@@ -38,10 +38,14 @@ class LoginPopUp extends React.Component{
                 addressValid = !InputValidator.isEmpty(this.state.address) && InputValidator.isAddress(this.state.address),
                 zipCodeValid = !InputValidator.isEmpty(this.state.zipCode) && InputValidator.isZipcode(this.state.zipCode);
 
-        if(firstNameValid && lastNameValid && emailValid && passwordValid && repasswordValid && cityValid && addressValid && zipCodeValid)
-            return true;
-        else
-            return false;
+        if(!this.state.displaySignUpFormInstead ){ /// !... ???????
+            if(emailValid) {
+                return true
+            }
+        }else{
+            return !!(firstNameValid && lastNameValid && emailValid && passwordValid && repasswordValid && cityValid && addressValid && zipCodeValid)
+        }
+
     }
 
     handleOnSubmitSignIn(e){
@@ -87,21 +91,27 @@ class LoginPopUp extends React.Component{
                 console.log("got data :", data);
                 if (data.status === 201) {
                     this.setState({
-                        displaySignUpFormInstead: true,
+                        ...this.state,
                         errorMsg: 'Sign Up SUCCESS! You can now sign in!'
                     });
                 } else if (data.status === 409) {
                     console.log('Email already in use');
-                    this.setState({errorMsg: 'User with given email already exists'})
+                    this.setState({
+                        ...this.state,
+                        errorMsg: 'User with given email already exists'
+                    })
                 }
             });
         } else {
-            this.setState({errorMsg : 'Invalid input. Check form fields and try again'})
+            this.setState({
+                ...this.state,
+                errorMsg : 'Invalid input. Check form fields and try again'
+            })
         }
     }
 
     handleSingUpLinkClicked() {
-        this.setState({displaySignUpFormInstead: true});
+        this.setState({...this.state, displaySignUpFormInstead: true});
     }
 
     handleOnChangeInputFirstName = (e) => {

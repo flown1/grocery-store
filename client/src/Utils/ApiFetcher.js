@@ -43,12 +43,35 @@ export function signInUser(user, callback){
     });
 }
 
+export function addProduct(productData, callback) {
+    const objToSend = {
+        desc_origin: productData.desc.origin,
+        desc_text: productData.desc.text,
+        desc_vitamins: productData.desc.vitamins,
+        img_url: productData.imgUrl,
+        name: productData.name,
+        price: productData.price,
+        quantity: 1
+    };
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.PRODUCTS_ACTIONS.ADD,
+        Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
+            {
+                body: JSON.stringify(objToSend)
+            }
+        )
+    )
+        .then((data) => {
+            console.log("Sent request. Received data: ", data);
+            callback(data);
+        })
+        .catch((err) => {
+            console.log("Unexpected error while adding product:", err);
+            callback({status: 400});
+        });
+}
+
 export function signUpUser(user,callback){
-    const objtosend = Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
-        {
-            body: JSON.stringify(user)
-        }
-    );
+
     return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_ACTIONS.SIGN_UP,
         Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
             {
@@ -57,9 +80,10 @@ export function signUpUser(user,callback){
         )
     )
     .then( (data) => {
-        console.log("Sent:", objtosend , "here is data: ", data);
+        console.log("Sent request. Received data: ", data);
         callback(data);
     })
+
     .catch( (err) => {
         console.log("Unexpected error while signing up:", err);
         callback({status: 400});

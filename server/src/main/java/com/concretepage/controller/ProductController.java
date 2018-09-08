@@ -13,7 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("product")
 public class ProductController {
     @Autowired
     private IProductService productService;
@@ -33,15 +33,13 @@ public class ProductController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping("product")
+    @PostMapping("add")
     public ResponseEntity<Void> addArticle(@RequestBody Product product, UriComponentsBuilder builder) {
         boolean alreadyExists = productService.addProduct(product);
         if (alreadyExists == false) {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/product/{id}").buildAndExpand(product.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

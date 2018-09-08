@@ -16,7 +16,8 @@ export const APIFETCHER_CONFIG = {
         }
     },
     PRODUCTS_ACTIONS: {
-        GET_ALL: "user/products"
+        GET_ALL: "product/products",
+        ADD: "product/add"
     },
     USER_ACTIONS: {
         SIGN_IN: "users/signIn",

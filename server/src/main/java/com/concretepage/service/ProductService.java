@@ -21,12 +21,12 @@ public class ProductService implements IProductService {
     }
     @Override
     public synchronized boolean addProduct(Product product){
-//        if (articleDAO.articleExists(article.getTitle(), article.getCategory())) {
-//            return false;
-//        } else {
+        if (productDAO.productExists(product.getName())) {
+            return false;
+        } else {
             productDAO.addProduct(product);
             return true;
-//        }
+        }
     }
 //    @Override
 //    public void updateUser(Product product) {

@@ -38,11 +38,12 @@ public class ProductDAO implements IProductDAO {
     public void deleteProduct(int productId) {
         entityManager.remove(getProductById(productId));
     }
-//    @Override
-//    public boolean articleExists(String title, String category) {
-//        String hql = "FROM Product as prod1 WHERE prod1.id = ?";
-//        int count = entityManager.createQuery(hql).setParameter(1, title)
-//                .setParameter(2, category).getResultList().size();
-//        return count > 0 ? true : false;
-//    }
+
+    @Override
+    public boolean productExists(String email) {
+        String hql = "FROM Product as prod WHERE prod.name = ?";
+        int count = entityManager.createQuery(hql).setParameter(1, email)
+                .getResultList().size();
+        return count > 0 ? true : false;
+    }
 }

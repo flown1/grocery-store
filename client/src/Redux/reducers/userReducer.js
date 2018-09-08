@@ -4,6 +4,7 @@ const initialState = {
     userInfo: {
         firstName: 'Pszemek',
         lastName: 'Placek',
+        admin: false
     }
 };
 

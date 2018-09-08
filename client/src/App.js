@@ -11,10 +11,9 @@ import connect from "react-redux/es/connect/connect";
 import {
     productsFetchBegin,
     productsFetchFailure,
-    productsFetchSuccess, productsFilter
+    productsFetchSuccess
 } from "./Redux/actions/productActions";
 import SearchBar from "./Components/Main/ProductsContainer/SearchBar";
-import ProductShowcasePopUp from "./Components/Main/ProductsContainer/ProductShowcasePopUp";
 import AddingProductPopUp from "./Components/Main/ProductsContainer/AddingProductPopUp";
 
 class App extends Component {
@@ -38,22 +37,26 @@ class App extends Component {
     };
 
     render() {
-        const popup = (this.state.showAddProductPopUp? <AddingProductPopUp closePopup={this.handlePopupClose}/> : null);
+        const addProductPopUp = this.state.showAddProductPopUp
+            ? <AddingProductPopUp fetchProducts={this.props.fetchProducts} closePopup={this.handlePopupClose}/>
+            : null;
+        const addProductButton = this.props.isLoggedIn && this.props.userInfo.admin
+            ? <button className="btn btn-main btn-red btn-lg" onClick={this.handleButtonClick}>+ Add Product</button>
+            : null;
 
         return (
           <div className="App">
-              {popup}
+              {addProductPopUp}
             <Navbar />
             <FeaturedSlider />
             <div className="horizontal-separator"></div>
-              <SearchBar onChange={this.props.searchProducts}/>
-              <button class="btn btn-red btn-md" onClick={this.handleButtonClick}>+ Add Product</button>
+            <SearchBar onChange={this.props.searchProducts}/>
+            {addProductButton}
 
-              <div className="flex-wrapper list-of-products-wrapper">
-
-                <ListOfProducts/>
+            <div className="flex-wrapper list-of-products-wrapper">
+            <ListOfProducts/>
             </div>
-              <Footer/>
+            <Footer/>
           </div>
         );
     }
@@ -74,4 +77,10 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+    return {
+        isLoggedIn: state.userReducer.isLoggedIn,
+        userInfo: state.userReducer.userInfo
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
