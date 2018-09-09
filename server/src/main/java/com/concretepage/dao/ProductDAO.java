@@ -40,9 +40,9 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public boolean productExists(String email) {
+    public boolean productExists(String name) {
         String hql = "FROM Product as prod WHERE prod.name = ?";
-        int count = entityManager.createQuery(hql).setParameter(1, email)
+        int count = entityManager.createQuery(hql).setParameter(1, name)
                 .getResultList().size();
         return count > 0 ? true : false;
     }

@@ -15,12 +15,16 @@ export const APIFETCHER_CONFIG = {
             referrer: "no-referrer",
         }
     },
-    PRODUCTS_ACTIONS: {
+    PRODUCTS_REQUESTS: {
         GET_ALL: "product/products",
         ADD: "product/add"
     },
-    USER_ACTIONS: {
+    USER_REQUESTS: {
         SIGN_IN: "users/signIn",
         SIGN_UP: "users/signUp"
+    },
+    ORDER_REQUESTS: {
+        GET: "orders/orders",
+        ADD: "orders/add"
     }
 };

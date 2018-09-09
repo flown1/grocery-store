@@ -2,7 +2,7 @@ import {APIFETCHER_CONFIG} from "../Configs/ApiFetcherConfig";
 
 export function getAllProducts(callback){
 
-  return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.PRODUCTS_ACTIONS.GET_ALL)
+  return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.PRODUCTS_REQUESTS.GET_ALL)
     .then(resp => resp.json())
       .then(resp => {
           console.log(resp);
@@ -26,7 +26,7 @@ export function getAllProducts(callback){
 };
 
 export function signInUser(user, callback){
-    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_ACTIONS.SIGN_IN,
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_REQUESTS.SIGN_IN,
         Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
             {
                 body: JSON.stringify({"email": user.email, "password": user.password})
@@ -53,7 +53,7 @@ export function addProduct(productData, callback) {
         price: productData.price,
         quantity: 1
     };
-    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.PRODUCTS_ACTIONS.ADD,
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.PRODUCTS_REQUESTS.ADD,
         Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
             {
                 body: JSON.stringify(objToSend)
@@ -71,8 +71,7 @@ export function addProduct(productData, callback) {
 }
 
 export function signUpUser(user,callback){
-
-    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_ACTIONS.SIGN_UP,
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.USER_REQUESTS.SIGN_UP,
         Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
             {
                 body: JSON.stringify(user)
@@ -84,6 +83,25 @@ export function signUpUser(user,callback){
         callback(data);
     })
 
+    .catch( (err) => {
+        console.log("Unexpected error while signing up:", err);
+        callback({status: 400});
+    });
+}
+
+export function addOrder(order, callback){
+    console.log("order:", order);
+    return fetch(APIFETCHER_CONFIG.ROOT_URL + APIFETCHER_CONFIG.ORDER_REQUESTS.ADD,
+        Object.assign({}, APIFETCHER_CONFIG.METHODS_CONFIG.POST,
+            {
+                body: JSON.stringify(order)
+            }
+        )
+    )
+    .then( (data) => {
+        console.log("Sent request. Received data: ", data);
+        callback(data);
+    })
     .catch( (err) => {
         console.log("Unexpected error while signing up:", err);
         callback({status: 400});

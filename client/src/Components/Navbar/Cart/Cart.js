@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
 import DropdownList from "./DropdownList";
+import {productsFetchBegin, productsFetchFailure, productsFetchSuccess} from "../../../Redux/actions/productActions";
+import * as ApiFetcher from "../../../Utils/ApiFetcher";
 
 class Cart extends React.Component{
     constructor(props){
@@ -34,7 +36,8 @@ class Cart extends React.Component{
 
 const mapStateToProps = state => ({
     cart: state.productsReducer.cart,
-    total: state.productsReducer.total
+    total: state.productsReducer.total,
+    userInfo: state.userReducer.userInfo
 });
 
 export default connect(mapStateToProps)(Cart);
