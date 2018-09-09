@@ -2,6 +2,7 @@ import React from "react";
 import "../../../Styles/Checkout/CheckoutPopUp.css";
 import {connect} from "react-redux";
 import * as ApiFetcher from "../../../Utils/ApiFetcher";
+import {addProduct, clearCart} from "../../../Redux/actions/productActions";
 
 class CheckoutPopUp extends React.Component {
 
@@ -14,6 +15,8 @@ class CheckoutPopUp extends React.Component {
         ApiFetcher.addOrder({userInfo, cart}, (data) => {
            if(data.status === 201) {
                console.log("Order placed successfully");
+               this.props.closePopup();
+               this.props.clearCart();
            } else {
                console.log("Unexpected error");
            }
@@ -39,4 +42,10 @@ const mapStateToProps = state => ({
     userInfo: state.userReducer.userInfo,
     cart: state.productsReducer.cart
 });
-export default connect(mapStateToProps)(CheckoutPopUp);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        clearCart: () => dispatch(clearCart())
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPopUp);

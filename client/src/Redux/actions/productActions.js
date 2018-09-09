@@ -56,4 +56,10 @@ export const productsFilter = (searchQuery) => {
             searchQuery: searchQuery
         }
     }
-}
+};
+
+export const clearCart = () => {
+    return {
+        type: "CLEAR_CART"
+    }
+};

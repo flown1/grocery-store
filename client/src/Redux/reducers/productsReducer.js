@@ -9,9 +9,9 @@ const initialState = {
 };
 
 const handleAddProductToCart = (state, action) => {
-    let newTotal = state.total + action.payload.product.price;
-
+    let newTotal = state.total + action.payload.product.price * action.payload.product.quantity;
     let newCart = state.cart;
+
     const productToAdd = action.payload.product;
 
     if(productToAdd.quantity > 0) {
@@ -105,6 +105,14 @@ const handleProductsFilter = (state, action) => {
     });
 };
 
+const handleClearCart = (state, action) => {
+    return ({
+        ...state,
+        cart: [],
+        total: 0
+    });
+};
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_PRODUCT_TO_CART":
@@ -121,6 +129,8 @@ export default function reducer(state = initialState, action) {
           return handleProductsFetchFailure(state, action);
     case "PRODUCTS_FILTER":
           return handleProductsFilter(state, action);
+      case "CLEAR_CART":
+          return handleClearCart(state, action);
     default:
         return state
   }
