@@ -45,7 +45,7 @@
 
 .popup-right-section{
     width: 50%;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .products-specs-table{
@@ -56,6 +56,17 @@
 }
 .products-specs-table > tbody > tr:nth-child(odd) {
     background: whitesmoke;
+}
+
+.form-row {
+    width: 100%;
+    text-align: left;
+}
+
+.form-row > input {
+    margin-top: 20px;
+    margin-left: 20px;
+    right: 0;
 }
 .the-x-button{
     cursor: pointer;
