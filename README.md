@@ -1,13 +1,18 @@
 grocery-store
 Online grocery store. Created as a final project for Advanced Internet Applications course at Lodz University of Technology.
 
-Technological Stack:
+Stack:
 
 React / Redux
 HTML5 / CSS3
 Spring
 Hibernate
 
+
+## How To Use:
+1. Set up mysql database (storedb folder)
+2. Run spring api by running `mvn spring-boot:run` inside of `server` directory
+3. Run client app by running `npm start` inside of `client` directory
 
 ## Table of Contents
 
